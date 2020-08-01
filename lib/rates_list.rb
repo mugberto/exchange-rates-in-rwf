@@ -1,3 +1,4 @@
+require 'csv'
 require 'nokogiri'
 require 'selenium-webdriver'
 require 'open-uri'
@@ -21,6 +22,17 @@ class RatesList
       row = row.css('td').map(&:text)
       row.shift
       @data << row
+    end
+    @data
+  end
+
+  def add_country_name
+    driver = Selenium::WebDriver.for :chrome
+    driver.navigate.to COUNTRY_CODES_URL
+    country_list = CSV.parse(Nokogiri::HTML(driver.page_source).css('pre').text)
+    @data.each do |row|
+      country_record = country_list.detect { |country| country[2] == row[0] }
+      row.unshift country_record[0]
     end
     @data
   end

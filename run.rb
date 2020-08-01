@@ -3,5 +3,6 @@
 require_relative 'lib/rates_list.rb'
 
 rate = RatesList.new
-p rate.extract_rates
-sleep 30
+rate.extract_rates
+p rate.add_country
+# sleep 30
