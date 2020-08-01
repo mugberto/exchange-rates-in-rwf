@@ -18,6 +18,7 @@ class RatesList
     expand_element = driver.find_element(id: 'recordLimit')
     driver.action.click(expand_element).key_down(:arrow_down).key_down(:arrow_down).key_down(:enter).perform
     rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
+    driver.quit
     rows.each do |row|
       row = row.css('td').map(&:text)
       row.shift
@@ -30,10 +31,18 @@ class RatesList
     driver = Selenium::WebDriver.for :chrome
     driver.navigate.to COUNTRY_CODES_URL
     country_list = CSV.parse(Nokogiri::HTML(driver.page_source).css('pre').text)
+    driver.quit
     @data.each do |row|
       country_record = country_list.detect { |country| country[2] == row[0] }
       row.unshift country_record[0]
     end
     @data
+  end
+
+  def save_data
+    @data.unshift @head
+    CSV.open('./exchange_rates.csv', 'w') do |csv|
+      @data.each { |d| csv << d }
+    end
   end
 end
