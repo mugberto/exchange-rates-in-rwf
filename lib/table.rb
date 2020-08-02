@@ -4,6 +4,8 @@ class Table
   def initialize
     @data = []
     @col_widths = []
+    @max_col_width = 15
+    @breaklines = 0
   end
 
   def draw(path)
@@ -19,7 +21,6 @@ class Table
         i += 1
       end
       line << "\n" + '-' * (@col_widths.sum + @col_widths.size + 1)
-      @breakcells = []
       table << line
     end
     table << "\n"
@@ -45,16 +46,16 @@ class Table
     end
   end
 
-  def build_wrap_cell(cell_size, data, index, i)
+  def build_wrap_cell(cell_size, data, index, line)
     if data.size <= cell_size
       (index.zero? ? "\n|" : '') + ' ' * cell_size + '|'
     elsif @breaklines == 1
       @breaklines = 0
       n = cell_size * (data.size / cell_size + 1)
-      (index.zero? ? "\n|" : '') + data[(n - cell_size - i)..-1] + ' ' * (n - data.size - i) + '|'
+      (index.zero? ? "\n|" : '') + data[(n - cell_size - line)..-1] + ' ' * (n - data.size - line) + '|'
     else
       @breaklines -= 1
-      (index.zero? ? "\n|" : '') + data[(i * cell_size - 1), (cell_size - 1)] + '-|'
+      (index.zero? ? "\n|" : '') + data[(line * cell_size - 1), (cell_size - 1)] + '-|'
     end
   end
 end
