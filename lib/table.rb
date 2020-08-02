@@ -23,10 +23,8 @@ class Table
   end
 
   def build_cell(cell_size, data, index)
-    if data.size < cell_size
+    if data.size <= cell_size
       (index.zero? ? "\n|" : '') + data + ' ' * (cell_size - data.size) + '|'
-    elsif data.size == cell_size
-      (index.zero? ? "\n|" : '') + data + '|'
     else
       @breaklines = data.size / cell_size
       (index.zero? ? "\n|" : '') + data[0, cell_size - 1] + '-|'
