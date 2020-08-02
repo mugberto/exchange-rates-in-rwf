@@ -31,7 +31,7 @@ class RatesList
     rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
     driver.quit
     rows.each do |row|
-      row = row.css('td').map(&:text)
+      row = row.css('td').map { |i| i.text.strip }
       row.shift
       @data << row
     end

@@ -3,5 +3,5 @@
 require_relative 'lib/rates_list.rb'
 
 rate = RatesList.new
-rate.save_data
+rate.draw
 # sleep 30
