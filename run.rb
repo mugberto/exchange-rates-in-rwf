@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
 require_relative 'lib/rates_list.rb'
+require_relative 'lib/table.rb'
 
-rate = RatesList.new
-rate.draw
-# sleep 30
+rates = RatesList.new
+rates.save_data
+table = Table.new
+puts table.draw('./exchange_rates.csv')
