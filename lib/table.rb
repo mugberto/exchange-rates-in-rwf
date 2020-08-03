@@ -26,6 +26,8 @@ class Table
     table << "\n"
   end
 
+  private
+
   def col_widths
     cols = @data.max { |a, b| a.length <=> b.length }
     cols.size.times do |i|
