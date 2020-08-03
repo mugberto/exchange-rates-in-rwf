@@ -1,4 +1,4 @@
-require_relative '../lib/rates_list.rb'
+require './lib/rates_list.rb'
 
 # To run this test, delete 'exchange_rates.csv' file if it exists in your root folder
 describe RatesList do
