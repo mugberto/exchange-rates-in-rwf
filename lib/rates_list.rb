@@ -1,6 +1,6 @@
-require 'csv'
 require 'nokogiri'
 require 'selenium-webdriver'
+require 'csv'
 require 'open-uri'
 require_relative './urls.rb'
 
