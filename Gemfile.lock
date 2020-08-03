@@ -28,10 +28,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler!
-  nokogiri!
-  rspec!
-  selenium-webdriver!
+  nokogiri
+  rspec
+  selenium-webdriver
 
 RUBY VERSION
    ruby 2.7.0p0
