@@ -6,7 +6,6 @@ Extracted data are saved in csv file and displayed in terminal.
 This app requires the following packages to be installed on you system:
 - Ruby 2.7.0
 - Gem 3.1.2
-- Bundle 2.1.4
 
 ## Setup configurations
 
@@ -22,7 +21,8 @@ To get this app ready to run, follow this steps:
 
 * install require gems
 
-    pc$ sudo bundle install
+    pc$ gem install nokogiri
+    pc$ gem install selenium-webdriver
 
 ## How to use it
 
