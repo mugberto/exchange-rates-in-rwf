@@ -1,4 +1,4 @@
-require_relative '../lib/table.rb'
+require './lib/table.rb'
 
 describe Table do
   let(:table) { Table.new }
