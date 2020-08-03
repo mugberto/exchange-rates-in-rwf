@@ -28,6 +28,7 @@ class RatesList
     driver.navigate.to EXCHANGE_RATES_URL
     expand_element = driver.find_element(id: 'recordLimit')
     driver.action.click(expand_element).key_down(:arrow_down).key_down(:arrow_down).key_down(:enter).perform
+    sleep 3
     rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
     driver.quit
     rows.each do |row|
