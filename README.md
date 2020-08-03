@@ -13,16 +13,17 @@ To get this app ready to run, follow this steps:
 
 * clone this repo
 
-    pc$ git clone git@github.com:mugberto/exchange-rates-in-rwf.git
+        pc$ git clone git@github.com:mugberto/exchange-rates-in-rwf.git
 
 * move into the root directory
 
-    pc$ cd exchange-rates-in-rwf/
+        pc$ cd exchange-rates-in-rwf/
 
 * install require gems
 
-    pc$ gem install nokogiri
-    pc$ gem install selenium-webdriver
+        pc$ gem install nokogiri
+        
+        pc$ gem install selenium-webdriver
 
 ## How to use it
 
