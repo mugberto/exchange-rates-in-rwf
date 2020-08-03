@@ -13,11 +13,16 @@ This app requires the following packages to be installed on you system:
 To get this app ready to run, follow this steps:
 
 * clone this repo
-  -    pc$ git clone git@github.com:mugberto/exchange-rates-in-rwf.git
+
+    pc$ git clone git@github.com:mugberto/exchange-rates-in-rwf.git
+
 * move into the root directory
-  -    pc$ cd exchange-rates-in-rwf/
+
+    pc$ cd exchange-rates-in-rwf/
+
 * install require gems
-  -    pc$ sudo bundle install
+
+    pc$ sudo bundle install
 
 ## How to use it
 
