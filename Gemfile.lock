@@ -28,6 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler!
   nokogiri!
   rspec!
   selenium-webdriver!
