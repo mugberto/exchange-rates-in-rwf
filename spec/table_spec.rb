@@ -18,5 +18,17 @@ describe Table do
       result = table.draw('test_sample.csv')
       expect(result).to eq(expected)
     end
+    it 'returns < No path to data file given > when no path given' do
+      result = table.draw()
+      expect(result).to eq('No path to data file given')
+    end
+    it 'returns < Data file not available > when given a wrong path' do
+      result = table.draw('testsample.csv')
+      expect(result).to eq('Data file not available')
+    end
+    it 'returns < File format not recognized > when given a filename extension different from csv' do
+      result = table.draw('testsample.html')
+      expect(result).to eq('File format not recognized')
+    end
   end
 end
