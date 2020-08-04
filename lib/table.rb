@@ -8,15 +8,21 @@ class Table
     @breaklines = 0
   end
 
-  def draw(path=nil)
-    return 'No path to data file given' if path.nil? 
+  def draw(path = nil)
+    return 'No path to data file given' if path.nil?
 
     return 'File format not recognized' unless path.end_with?('.csv')
 
-    return 'Data file not available' unless File.exist?(path)
+    return 'Data not available' unless File.exist?(path)
 
     @data = CSV.read(path)
     col_widths
+    build_table
+  end
+
+  private
+
+  def build_table
     table = ''
     @data.each do |row|
       line = ''
@@ -31,8 +37,6 @@ class Table
     end
     table << "\n"
   end
-
-  private
 
   def col_widths
     cols = @data.max { |a, b| a.length <=> b.length }
