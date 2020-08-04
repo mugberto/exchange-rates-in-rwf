@@ -4,6 +4,7 @@ Extracted data are saved in csv file and displayed in terminal.
 
 ## Required installations
 This app requires the following packages to be installed on you system:
+- chrome browser
 - Ruby 2.7.0
 - Gem 3.1.2
 
