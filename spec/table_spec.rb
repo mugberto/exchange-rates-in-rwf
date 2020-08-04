@@ -24,7 +24,7 @@ describe Table do
     end
     it 'returns < Data file not available > when given a wrong path' do
       result = table.draw('testsample.csv')
-      expect(result).to eq('Data file not available')
+      expect(result).to eq('Data not available')
     end
     it 'returns < File format not recognized > when given a filename extension different from csv' do
       result = table.draw('testsample.html')

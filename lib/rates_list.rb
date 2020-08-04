@@ -14,9 +14,9 @@ class RatesList
 
   def save_data(url1 = EXCHANGE_RATES_URL, url2 = COUNTRY_CODES_URL)
     File.delete('./exchange_rates.csv') if File.exist?('./exchange_rates.csv')
-    return 'Page not found or page HTML structure changed' if extract_rates(url1) == 'error'
+    return 'Data not found' if extract_rates(url1) == 'error'
 
-    return 'Page not found or page HTML structure changed' if add_country_name(url2) == 'error'
+    return 'Data not found' if add_country_name(url2) == 'error'
 
     @data.unshift @head
     CSV.open('./exchange_rates.csv', 'w') do |csv|
