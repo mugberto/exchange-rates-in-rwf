@@ -10,6 +10,8 @@ It adds country name to the exchange rates list by matching currency codes
 ## Required installations
 This app requires the following packages to be installed on you system:
 - chrome browser
+- chrome driver 
+        pc:~$ sudo apt-get install chromium-chromedriver
 - Ruby 2.7.0
 - Gem 3.1.2
 
@@ -19,17 +21,17 @@ To get this app ready to run, follow this steps:
 
 * clone this repo
 
-        pc$ git clone git@github.com:mugberto/exchange-rates-in-rwf.git
+        pc:~$ git clone git@github.com:mugberto/exchange-rates-in-rwf.git
 
 * move into the root directory
 
-        pc$ cd exchange-rates-in-rwf/
+        pc:~$ cd exchange-rates-in-rwf/
 
 * install require gems
 
-        pc$ gem install nokogiri
+        pc:~$ gem install nokogiri
         
-        pc$ gem install selenium-webdriver
+        pc:~$ gem install selenium-webdriver
 
 ## How to use it
 
