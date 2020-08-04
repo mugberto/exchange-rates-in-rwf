@@ -19,7 +19,7 @@ describe Table do
       expect(result).to eq(expected)
     end
     it 'returns < No path to data file given > when no path given' do
-      result = table.draw()
+      result = table.draw
       expect(result).to eq('No path to data file given')
     end
     it 'returns < Data file not available > when given a wrong path' do

@@ -12,9 +12,12 @@ class RatesList
     @data = []
   end
 
-  def save_data
-    extract_rates
-    add_country_name
+  def save_data(url1 = EXCHANGE_RATES_URL, url2 = COUNTRY_CODES_URL)
+    File.delete('./exchange_rates.csv') if File.exist?('./exchange_rates.csv')
+    return 'Page not found or page HTML structure changed' if extract_rates(url1) == 'error'
+
+    return 'Page not found or page HTML structure changed' if add_country_name(url2) == 'error'
+
     @data.unshift @head
     CSV.open('./exchange_rates.csv', 'w') do |csv|
       @data.each { |d| csv << d }
@@ -23,13 +26,19 @@ class RatesList
 
   private
 
-  def extract_rates
+  def extract_rates(url)
     driver = Selenium::WebDriver.for :chrome
-    driver.navigate.to EXCHANGE_RATES_URL
-    expand_element = driver.find_element(id: 'recordLimit')
-    driver.action.click(expand_element).key_down(:arrow_down).key_down(:arrow_down).key_down(:enter).perform
-    sleep 3
-    rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
+    driver.navigate.to url
+    begin
+      expand_element = driver.find_element(id: 'recordLimit')
+      driver.action.click(expand_element).key_down(:arrow_down).key_down(:arrow_down).key_down(:enter).perform
+      sleep 3
+      rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
+    rescue Selenium::WebDriver::Error::WebDriverError
+      return 'error'
+    rescue Nokogiri::CSS::Tokenizer::ScanError
+      return 'error'
+    end
     driver.quit
     rows.each do |row|
       row = row.css('td').map { |i| i.text.strip }
@@ -38,11 +47,18 @@ class RatesList
     end
   end
 
-  def add_country_name
+  def add_country_name(url)
     driver = Selenium::WebDriver.for :chrome
-    driver.navigate.to COUNTRY_CODES_URL
-    country_list = CSV.parse(Nokogiri::HTML(driver.page_source).css('pre').text)
-    driver.quit
+    begin
+      driver.navigate.to url
+      sleep 3
+      country_list = CSV.parse(Nokogiri::HTML(driver.page_source).css('pre').text)
+      driver.quit
+    rescue Selenium::WebDriver::Error::WebDriverError
+      return 'error'
+    rescue Nokogiri::CSS::Tokenizer::ScanError
+      return 'error'
+    end
     @data.each do |row|
       country_record = country_list.detect { |country| country[2] == row[0] }
       row.unshift country_record[0]
