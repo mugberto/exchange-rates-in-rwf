@@ -1,6 +1,11 @@
 # EXCHANGE RATES IN RWANDA
+
 A scraper app that extracts exchange rates from Rwanda National Bank website (bnr.rw)
 Extracted data are saved in csv file and displayed in terminal. 
+In fact, This app extracts data from 2 websites:
+1. bnr.rw : a list of exchange rates and currency codes
+2. pkgstore.datahub.io : a list of country names and currency codes
+It adds country name to the exchange rates list by matching currency codes
 
 ## Required installations
 This app requires the following packages to be installed on you system:
@@ -31,7 +36,7 @@ To get this app ready to run, follow this steps:
 Once you have all you require packages and gems installed. 
 Open your terminal in the root directory and enter this command:
 
-    pc$ run.rb
+    pc$ ruby run.rb
  ​
 ## Contributing
 
