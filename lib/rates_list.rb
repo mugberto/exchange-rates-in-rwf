@@ -1,5 +1,5 @@
 require 'nokogiri'
-# require 'selenium-webdriver'
+require 'selenium-webdriver'
 require 'csv'
 require 'open-uri'
 require_relative './urls.rb'
@@ -27,19 +27,19 @@ class RatesList
   private
 
   def extract_rates(url)
-    # driver = Selenium::WebDriver.for :chrome
-    # driver.navigate.to url
+    driver = Selenium::WebDriver.for :chrome
+    driver.navigate.to url
     begin
-      # expand_element = driver.find_element(id: 'recordLimit')
-      # driver.action.click(expand_element).key_down(:arrow_down).key_down(:arrow_down).key_down(:enter).perform
-      # sleep 3
-      # rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
-      # driver.quit
+      expand_element = driver.find_element(id: 'recordLimit')
+      driver.action.click(expand_element).key_down(:arrow_down).key_down(:arrow_down).key_down(:enter).perform
+      sleep 3
+      rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
+      driver.quit
       # rubocop:disable Security/Open
-      rows = Nokogiri::HTML(open(url)).css('tbody tr')
+      # rows = Nokogiri::HTML(open(url)).css('tbody tr')
     # rubocop:enable Security/Open
-    # rescue Selenium::WebDriver::Error::WebDriverError
-    #   return 'error'
+    rescue Selenium::WebDriver::Error::WebDriverError
+      return 'error'
     rescue Nokogiri::CSS::Tokenizer::ScanError
       return 'error'
     rescue OpenURI::HTTPError
@@ -53,26 +53,26 @@ class RatesList
   end
 
   def add_country_name(url)
-    # driver = Selenium::WebDriver.for :chrome
-    # begin
-    #   driver.navigate.to url
-    #   sleep 3
-    #   country_list = CSV.parse(Nokogiri::HTML(driver.page_source).css('pre').text)
-    #   driver.quit
-    # rescue Selenium::WebDriver::Error::WebDriverError
-    #   return 'error'
-    # rescue Nokogiri::CSS::Tokenizer::ScanError
-    #   return 'error'
-    # end
+    driver = Selenium::WebDriver.for :chrome
     begin
-      # rubocop:disable Security/Open
-      country_list = CSV.parse(Nokogiri::HTML(open(url)).css('p').children[0].text)
-      # rubocop:enable Security/Open
+      driver.navigate.to url
+      sleep 3
+      country_list = CSV.parse(Nokogiri::HTML(driver.page_source).css('pre').text)
+      driver.quit
+    rescue Selenium::WebDriver::Error::WebDriverError
+      return 'error'
     rescue Nokogiri::CSS::Tokenizer::ScanError
       return 'error'
-    rescue OpenURI::HTTPError
-      return 'error'
     end
+    # begin
+    #   # rubocop:disable Security/Open
+    #   country_list = CSV.parse(Nokogiri::HTML(open(url)).css('p').children[0].text)
+    #   # rubocop:enable Security/Open
+    # rescue Nokogiri::CSS::Tokenizer::ScanError
+    #   return 'error'
+    # rescue OpenURI::HTTPError
+    #   return 'error'
+    # end
     @data.each do |row|
       country_record = country_list.detect { |country| country[2] == row[0] }
       row.unshift country_record[0]
