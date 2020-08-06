@@ -9,12 +9,10 @@ It adds country name to the exchange rates list by matching currency codes
 
 ## Required installations
 This app requires the following packages to be installed on you system:
-* chrome browser
+* chrome browser version 12.0.712.0 or newer.
 * chrome driver
-
-        pc:~$ sudo apt-get update
-        pc:~$ sudo apt-get install chromium-chromedriver
-
+  * Debian based Linux distros: `pc:~$ sudo apt-get update && sudo apt-get install chromium-chromedriver`
+  * For other OSs, check this [official page](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
 * Ruby 2.7.0
 * Gem 3.1.2
 
