@@ -30,9 +30,9 @@ To get this app ready to run, follow this steps:
 
 * install require gems
 
-        pc:~$ gem install nokogiri
+        pc:~$ gem install nokogiri -v 1.6.8
         
-        pc:~$ gem install selenium-webdriver
+        pc:~$ gem install selenium-webdriver -v 2.53.4
 
 ## How to use it
 
