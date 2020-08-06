@@ -35,9 +35,6 @@ class RatesList
       sleep 3
       rows = Nokogiri::HTML(driver.page_source).css('tbody tr')
       driver.quit
-      # rubocop:disable Security/Open
-      # rows = Nokogiri::HTML(open(url)).css('tbody tr')
-    # rubocop:enable Security/Open
     rescue Selenium::WebDriver::Error::WebDriverError
       return 'error'
     rescue Nokogiri::CSS::Tokenizer::ScanError
@@ -63,16 +60,9 @@ class RatesList
       return 'error'
     rescue Nokogiri::CSS::Tokenizer::ScanError
       return 'error'
+    rescue OpenURI::HTTPError
+      return 'error'
     end
-    # begin
-    #   # rubocop:disable Security/Open
-    #   country_list = CSV.parse(Nokogiri::HTML(open(url)).css('p').children[0].text)
-    #   # rubocop:enable Security/Open
-    # rescue Nokogiri::CSS::Tokenizer::ScanError
-    #   return 'error'
-    # rescue OpenURI::HTTPError
-    #   return 'error'
-    # end
     @data.each do |row|
       country_record = country_list.detect { |country| country[2] == row[0] }
       row.unshift country_record[0]
