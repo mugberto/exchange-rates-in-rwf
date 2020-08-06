@@ -10,9 +10,11 @@ It adds country name to the exchange rates list by matching currency codes
 ## Required installations
 This app requires the following packages to be installed on you system:
 * chrome browser version 12.0.712.0 or newer.
-* chrome driver
-  * Debian based Linux distros: `pc:~$ sudo apt-get update && sudo apt-get install chromium-chromedriver`
-  * For other OSs, check this [official page](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
+* chromedriver
+  * Installation instructions:
+    * Check your browser version [here](https://www.whatismybrowser.com/detect/what-version-of-chrome-do-i-have)
+    * Find a compatible chromedriver binary [here](https://stackoverflow.com/questions/41133391/which-chromedriver-version-is-compatible-with-which-chrome-browser-version)
+    * Follow installation instructions on [Yi Zeng’s Blog](https://yizeng.me/2014/04/20/install-chromedriver-and-phantomjs-on-linux-mint/)
 * Ruby 2.7.0
 * Gem 3.1.2
 
@@ -30,9 +32,9 @@ To get this app ready to run, follow this steps:
 
 * install require gems
 
-        pc:~$ gem install nokogiri -v 1.6.8
+        pc:~$ gem install nokogiri -v 1.10.10
         
-        pc:~$ gem install selenium-webdriver -v 2.53.4
+        pc:~$ gem install selenium-webdriver -v 3.142.7
 
 ## How to use it
 
