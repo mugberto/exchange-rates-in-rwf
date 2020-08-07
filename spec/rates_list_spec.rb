@@ -1,6 +1,5 @@
-require 'nokogiri'
-require './lib/rates_list.rb'
-require './lib/urls.rb'
+require_relative '../lib/rates_list.rb'
+require_relative '../lib/urls.rb'
 
 describe RatesList do
   let(:rate) { RatesList.new }
